@@ -5,3 +5,4 @@ This is a small project, the objective is to calculate the area, centroid and in
 The results obtained in the script would be used in deflexion and stress calculus.
 
 I will appreciate your help for making this better
+Thank You!
