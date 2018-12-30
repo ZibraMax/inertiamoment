@@ -1,0 +1,17 @@
+body
+    {
+      	font-family: Helvetica;
+    }
+    .hh {
+	  margin: 0 auto;
+	  width: 150px;
+	  height: auto;
+	}
+	.autosuper {
+		margin: 0 auto;
+	  	width: auto;
+	  	height: auto;
+	}
+	.cuerpo {
+		margin: 15px;
+	}
