@@ -10,9 +10,6 @@
 		var centroideYTotal = 0;
 		var coordenadaMaxima = 0;
 		var figuras = [];
-
-		const tamanoCanvas = cuadro.width;
-
 		function enter(event) {
 			if (event.keyCode == 13) {
 				agregarPunto();
@@ -24,7 +21,7 @@
 			var figura = [];
 			puntos = document.getElementById("coord").value.split(";");
 			if (puntos.length >= 4 && puntos[0] == puntos[puntos.length-1]) {
-				papel.clearRect(0, 0, tamanoCanvas, tamanoCanvas);
+				papel.clearRect(0, 0, 600, 600);
 				for (var i = 0; i < puntos.length; i++) {
 					if (coordenadaMaxima < parseFloat(puntos[i].split(",")[0])) {
 						coordenadaMaxima = parseFloat(puntos[i].split(",")[0]);
@@ -81,7 +78,7 @@
 			centroideYTotal = 0;
 			coordenadaMaxima = 0;
 			figuras = [];
-			papel.clearRect(0, 0, tamanoCanvas, tamanoCanvas);
+			papel.clearRect(0, 0, 600, 600);
 			document.getElementById("txt1").innerHTML = "Centroide en x: " + centroideXTotal;
 			document.getElementById("txt2").innerHTML = "Centroide en y: " + centroideYTotal;
 			document.getElementById("txt3").innerHTML = "Area: " + areTotal;
@@ -104,21 +101,21 @@
 		    lienzo.strokeStyle = "blue";
 		    lienzo.lineWidth = "3";
 		    lienzo.moveTo( 50, 0);
-		    lienzo.lineTo( 50, tamanoCanvas);
+		    lienzo.lineTo( 50, 600);
 		    lienzo.moveTo( 45, 7);
 		    lienzo.lineTo( 50, 3);
 		    lienzo.moveTo( 50, 3);
 		    lienzo.lineTo( 55, 7);
-		    lienzo.moveTo( tamanoCanvas - 7, tamanoCanvas- 55);
-		    lienzo.lineTo( tamanoCanvas - 3, tamanoCanvas - 50);
-		    lienzo.moveTo( tamanoCanvas - 3, tamanoCanvas - 50);
-		    lienzo.lineTo( tamanoCanvas - 7, tamanoCanvas - 45);
-		    lienzo.moveTo( 0, tamanoCanvas - 50);
-		    lienzo.lineTo( tamanoCanvas, tamanoCanvas - 50);
+		    lienzo.moveTo( 593, 545);
+		    lienzo.lineTo( 597, 550);
+		    lienzo.moveTo( 597, 550);
+		    lienzo.lineTo( 593, 555);
+		    lienzo.moveTo( 0, 550);
+		    lienzo.lineTo( 600, 550);
 		    lienzo.stroke();
 		    lienzo.closePath();
 		    lienzo.fillText("Eje Y",5,10);
-		    lienzo.fillText("Eje X",tamanoCanvas - 40,tamanoCanvas - 60);
+		    lienzo.fillText("Eje X",560,540);
 		}
 		function pintar(puntos, colorlinea) {
 			for (var i = 0; i < puntos.length - 1; i++) {
@@ -149,54 +146,54 @@
 		}
 
 		function draw(color, xi, yi, xf, yf, lienzo, colorobligatorio) {
-			var mult = (tamanoCanvas-100)/coordenadaMaxima;
+			var mult = 500/coordenadaMaxima;
 	        lienzo.beginPath();
 	        lienzo.strokeStyle = colorobligatorio;
 		    lienzo.lineWidth = "2";
-		    lienzo.moveTo(xi*mult + 50 , tamanoCanvas-50 - yi*mult);
-		    lienzo.lineTo(xf*mult + 50 , tamanoCanvas-50 - yf*mult);
+		    lienzo.moveTo(xi*mult + 50 , 550 - yi*mult);
+		    lienzo.lineTo(xf*mult + 50 , 550 - yf*mult);
 		    lienzo.stroke();
 		    lienzo.closePath();
 		}
 		function dibujarSeparaciones() {
-			var a = (tamanoCanvas-100)/coordenadaMaxima
+			var a = 500/coordenadaMaxima
 			var lienzo = papel;
-			for (var i = 0; i < (tamanoCanvas-100)/a + 1; i++) {
+			for (var i = 0; i < 500/a + 1; i++) {
 				if (i%(coordenadaMaxima/10) == 0) {
-					lienzo.fillText("" + i , 30, (tamanoCanvas-43) - i*a);
+					lienzo.fillText("" + i , 30, 553 - i*a);
 					lienzo.beginPath();
 	  				lienzo.strokeStyle = "black";
 	 				lienzo.lineWidth = "2";
-					lienzo.moveTo(50, (tamanoCanvas-50) - i*a);
-	    			lienzo.lineTo(55, (tamanoCanvas-50) - i*a);
+					lienzo.moveTo(50, 550 - i*a);
+	    			lienzo.lineTo(55, 550 - i*a);
 	    			lienzo.stroke();
 	    			lienzo.closePath();
 					lienzo.save();
-					lienzo.translate(( (tamanoCanvas-50) - i*a), (tamanoCanvas-35));
+					lienzo.translate(( 550 - i*a), 565);
 					lienzo.rotate(Math.PI/2);
-					lienzo.translate(-( (tamanoCanvas-50) - i*a), -(tamanoCanvas-35));
-					lienzo.fillText("" + coordenadaMaxima - i ,( (tamanoCanvas-60) - i*a), (tamanoCanvas-32));
+					lienzo.translate(-( 550 - i*a), -565);
+					lienzo.fillText("" + coordenadaMaxima - i ,( 540 - i*a), 568);
 					lienzo.restore();
 					lienzo.beginPath();
 	  				lienzo.strokeStyle = "black";
 	 				lienzo.lineWidth = "2";
-					lienzo.moveTo(( (tamanoCanvas-50) - i*a), (tamanoCanvas-50));
-	    			lienzo.lineTo(( (tamanoCanvas-50) - i*a), (tamanoCanvas-55));
+					lienzo.moveTo(( 550 - i*a), 550);
+	    			lienzo.lineTo(( 550 - i*a), 545);
 	    			lienzo.stroke();
 	    			lienzo.closePath();
 				}
 			}
 		}
 		function drawc(color, xi, yi, xf, yf, lienzo) {
-			var mult = (tamanoCanvas-100)/coordenadaMaxima;
+			var mult = 500/coordenadaMaxima;
 			lienzo.beginPath();
 			lienzo.strokeStyle = color;
 			lienzo.lineWidth = "10";
-			lienzo.moveTo(xi*mult + 50 , (tamanoCanvas-50) - yi*mult);
-			lienzo.lineTo(xi*mult + 51 , (tamanoCanvas-51) - yi*mult);
-	        lienzo.moveTo(xi*mult + 51 , (tamanoCanvas-50) - yi*mult);
-			lienzo.lineTo(xi*mult + 50 , (tamanoCanvas-51) - yi*mult);
-			lienzo.fillText("("+ xi.toFixed(2) +", "+ yi.toFixed(2) +")", xi*mult + 50 + 5, (tamanoCanvas-47) - yi*mult);
+			lienzo.moveTo(xi*mult + 50 , 550 - yi*mult);
+			lienzo.lineTo(xi*mult + 51 , 549 - yi*mult);
+	        lienzo.moveTo(xi*mult + 51 , 550 - yi*mult);
+			lienzo.lineTo(xi*mult + 50 , 549 - yi*mult);
+			lienzo.fillText("("+ xi.toFixed(2) +", "+ yi.toFixed(2) +")", xi*mult + 50 + 5, 553 - yi*mult);
 			lienzo.stroke();
 			lienzo.closePath();
 		}
